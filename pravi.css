@@ -1,0 +1,288 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	width: 100%;
+    margin: 0 auto;
+	padding-left:5%;
+	padding-right:5%;
+
+}
+
+.red{
+	padding: 10px;
+	width:100%;
+	float:left;
+	min-height: 1px;
+}
+
+.kolona{
+	
+	margin-left: 2%;
+	margin-right: 2%;
+	display: inline-block; /*Omogućava da se kolone prikažu bez da se float mora clearovati poslije*/
+	float: left;
+	min-height: 20px;
+}
+
+.kolona:first-child{
+	margin-left: 0px;
+}
+
+.kolona:last-child{
+	margin-right: 0px;
+}
+
+.kolona.cetri{
+	width: 100%;
+}
+.kolona.tri{
+	width: 74%;
+}
+.kolona.dva{
+	width: 48%;
+}
+.kolona.jedan{
+	width: 22%;
+}
+#meni {
+    width: 20%;
+    float: left;
+    padding: 0;
+	/*height:350px;*/
+	margin-left:0;
+}
+#meni ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+	/*height:350px;*/
+}
+#meni li{
+	width: 100%;
+}
+#meni li a{
+    display: block;
+    color: #000;
+    padding: 18px 30px;
+    text-decoration: none;
+	font-size:25px;
+	width:100%;
+	
+}
+#meni li a.active {
+    background-color: #4CAF50;
+    color: white;
+	
+}
+#meni li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+#pretraga
+{
+	margin-top:2%;
+	padding-top:0;
+	padding-right:0;
+}
+form {float: right; width: 100%;}
+#i
+{
+	width: 40%;
+	float: right;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding:0;
+}
+#horizontalni_meni{
+	padding-left:0;
+    padding-right:0;
+	padding-bottom:0;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+ li {
+    float: right;
+}
+ li a {
+    display: block;
+    color: white;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+ li a:hover {
+    background-color: #111;
+}
+#prijava{
+	margin-top:100px;
+	margin-left:70px;
+	margin-right:0;
+	border: 2px solid #ccc;
+	padding-left:1%%;
+	padding-bottom:4%;
+	background-color:#E6E6E6;
+	float:right;
+	
+}
+#dno{float:left;}
+#slika1 {
+	background-image:url(slicice/post.jpg);
+	background-size:100% 100%;
+	background-repeat: no-repeat;
+	}
+#slika2 {
+	float:right;
+	margin-top:150px;
+}
+#slika3 {
+	background-image:url(slicice/zaglavlje2.jpg);
+	background-size:100% 100%;
+	background-repeat: no-repeat;
+	}
+#slika4 {
+	background-image:url(slicice/zaglavlje1.jpg);
+	background-repeat: no-repeat;
+	background-size:100% 100%;
+	}
+#slika5 {
+	background-image:url(slicice/zaglavlje1.jpg);
+	background-repeat: no-repeat;
+	background-size:100% 100%;
+	}
+#slika6{
+	margin-top:100px;
+}
+#forma{
+	float:left;
+}
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+#desna_strana {
+	margin-right:0;
+	float:right;
+}
+#logo {
+	margin-bottom:20%;
+    margin-top:20%;
+}
+#zadnji_red{
+	height:20px;
+	background-color: #333;
+	
+}
+#odgovornost{
+	border: 2px solid red;
+	margin-top:40px;
+}
+
+.post img{
+	width:50%;
+	float: left;
+}
+.post p{
+	float: left;
+	margin: 0px;
+	width:50%;
+	padding-left: 10px;
+	text-align: justify;
+}
+
+.post div{
+	width: 100%;
+	float: left;
+	margin-bottom: 20px;
+}
+.post a{
+	text-decoration: none;
+	color:black;
+}
+.post a:hover{
+	color:#9C9C9C;
+}
+
+@media screen and (max-width:1000px){
+#meni li a{
+    display: block;
+    color: #000;
+    padding: 18px 30px;
+    text-decoration: none;
+	font-size:15px;
+	width:100%;
+	
+}
+}
+
+
+@media screen and (max-width:600px){
+	#desna_strana
+	{
+		float: left;
+		width: 100%;
+		margin-left: 0px;
+		margin-top: 0px;
+	}
+
+	#prijava{
+		margin-top: 20px;
+		margin-left: 0px;
+	}
+
+	#meni{
+		width:100%;
+		background-color: #f1f1f1;
+		
+	}
+    #meni ul{
+		width: 100%;
+	
+	}
+	#meni li{
+		float:left;
+		width: 20%;
+		background-color: #f1f1f1;
+	}
+	#meni li a{
+		padding-left:0px;
+		padding-right: 0px;
+		font-size:20px;
+		text-align: center;
+	}
+	#paragraf.kolona.jedan {
+		margin-left: 20px;
+		margin-right: 10px;
+	}
+	.kolona.jedan {
+		width: 30%;
+	}
+
+	.kolona.dva{
+		width: 100%!important;
+	}
+	#i
+	{
+	width: 80%;
+	}
+	@media screen and (max-width:500px){
+		#meni li{
+			width: 100%;
+		}
+	}
+
+}
