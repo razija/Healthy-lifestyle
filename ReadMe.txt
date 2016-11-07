@@ -1,7 +1,5 @@
 I  - Šta je uradeno?
 - skice svake od podstranica
- (naslovna.html, Vjezbanje.html, Ishrana.html imaju isti layout, samo ce imati razlicite
-  postove, odnosno postove vezane za razlicite teme)
 - sve stranice su responzivne i imaju grid-view
 - media query za izgled na mobilnim uredjajima
 - implementirano vise html formi
@@ -9,6 +7,7 @@ I  - Šta je uradeno?
 - bez glitcheva, elemneti poravnati
 
 II  - Šta nije uradeno?
+      Skice za stranice Kontakt.html, Post1-v.html
 
 III - Bug-ovi koje ste primijetili ali niste stigli 
        ispraviti, a znate rješenje (opis rješenja)
