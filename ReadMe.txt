@@ -1,8 +1,12 @@
 I  - Šta je uradeno?
-
+     -validacija formi na stranici Kontakt.html, i unosa emaila na svim ostalim stranicama
+     -dropdown meni za podstranice vjezbanje i ishrana
+     -galerija slika koja se nalazi u meniu na vrhu i dnu stranice, prosirivanje slike 
+      na klik, te smanjivanje na esc tipku
+     -ajax
 
 II  - Šta nije uradeno?
-      Skice za stranice Kontakt.html, Post1-v.html
+      -za dropdown meni nisu pravljene nove podstranice, nego je povezan sa postojecim 
 
 III - Bug-ovi koje ste primijetili ali niste stigli 
        ispraviti, a znate rješenje (opis rješenja)
