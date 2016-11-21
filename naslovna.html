@@ -5,6 +5,7 @@
 
 <title>Helathy Lifestyle</title>
 <link rel="stylesheet" href="pravi.css">
+<script src="novi.js"></script>
 
 </head>
 <body>
@@ -13,6 +14,7 @@
   <li><a class="active" href="naslovna.html">Home</a></li>
   <li><a href="Kontakt.html">Kontakt</a></li>
   <li><a href="Omeni.html">O meni</a></li>
+  <li><a href="galerija.html">Galerija</a></li>
 		</ul>
 	</div>
 		<div class="red" id="pretraga">
@@ -30,19 +32,28 @@
 		<div class="red"></div>
 		<div class="red"></div>
 	</div>
+	
 	<div class="kolona jedan" id="meni">
 		<ul>
-			<li><a class="active" href="naslovna.html">Home</a></li>
-  
-			<li><a href="vjezbanje.html">Vježbanje</a></li>
- 
-			<li><a href="ishrana.html">Ishrana</a></li>
-  
-			<li><a href="Omeni.html">O meni</a></li>
-  
-			<li><a href="Kontakt.html">Kontakt</a></li>
-		</ul>
+	        <li><a class="active" id="naslovna.html" href="#" onclick="ucitaj('naslovna.html')">Home</a></li>
+			<li><a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()">Vježbanje</a>
+			  <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                  <a href="#" onclick="ucitaj('Vjezbanje.html')">Kod kuće</a>
+                  <a href="#" onclick="ucitaj('Vjezbanje.html')">Teretana</a>
+              </div>
+			</li>
+	    
+            <li><a href="#"  onmouseover="mopen('m2')" onmouseout="mclosetime()">Ishrana</a>
+			  <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                  <a href="#" onclick="ucitaj('Ishrana.html')">Dijeta</a>
+                  <a href="#" onclick="ucitaj('Ishrana.html')">Glavna jela</a>
+			  </div>
+		   </li>
+	       <li><a id="Omeni.html" href="#" onclick="ucitaj('Omeni.html')">O meni</a></li>
+           <li><a id="Kontakt.html" href="#" onclick="ucitaj('Kontakt.html')">Kontakt</a></li>
+	  </ul>
 	</div>
+	 <div id="stranica"></div>
 	
 	<div class="kolona dva">
 		<div class="red post">
@@ -73,26 +84,33 @@
 		<h3>Moji tekstovi u tvom inboxu</h3>
         <p>Odluka da pratis u stopu ovaj blog je mozda najbolja odluka koju ces donijeti u zivotu. Posebno ako su i ostale bile uzasne.Ima nas 1000.
 		   Join 1000 other subscribers!</p>
-		   <input type="text" placeholder="Email Adress">
+		   
+		   <form id="forma1" name="forma1" onclick='return validateForm("forma1")' method="post">
+		   <div id="greska" name="greska" style="color:red" font-weight:bold></div>
+		   <input type="text" placeholder="Email Adress" id="email" name="email">
 		   <input type="button" value="Prijavi se!">
-		  </div>
-		  <div class="red" id="prijava">
+		   </form>
+		   
+   </div>
+  <div class="red" id="prijava">
 		   <h3>Drustvene mreze</h3>
-		  </div>
-	        <div class="red" id="logo">
+  </div>
+  <div class="red" id="logo">
 			<img width="100%" src="slicice/srce.png" alt="Picture">
 			</div>
-		</div>
+  </div>
 		
 			<div class="red" id="horizontalni_meni">
 		<ul>
   <li><a class="active" href="naslovna.html">Home</a></li>
   <li><a href="Kontakt.html">Kontakt</a></li>
   <li><a href="Omeni.html">O meni</a></li>
+  <li><a href="galerija.html">Galerija</a></li>
 		</ul>
    </div>
    
 <div class="red" id="zadnji_red"></div>
+ 
 
 </body>
 </html>

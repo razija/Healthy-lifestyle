@@ -1,10 +1,5 @@
 I  - Šta je uradeno?
-- skice svake od podstranica
-- sve stranice su responzivne i imaju grid-view
-- media query za izgled na mobilnim uredjajima
-- implementirano vise html formi
-- meni web stranice koji se vidi na svakoj podstranici
-- bez glitcheva, elemneti poravnati
+
 
 II  - Šta nije uradeno?
       Skice za stranice Kontakt.html, Post1-v.html
