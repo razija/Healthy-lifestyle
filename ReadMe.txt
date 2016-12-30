@@ -1,15 +1,17 @@
 I  - Šta je uradeno?
-     -validacija formi na stranici Kontakt.html, i unosa emaila na svim ostalim stranicama
-     -dropdown meni za podstranice vjezbanje i ishrana
-     -galerija slika koja se nalazi u meniu na vrhu i dnu stranice, prosirivanje slike 
-      na klik, te smanjivanje na esc tipku
-     -ajax
+    -validacija svih podataka koji se unose u forme, kao i zastita od xss, mogucen je unos u xml fajlove sa formi.
+     Jedan koji se odnosi na komentare, odnosno utiske koji korisnik ostavlja i drugi koji sadrzi mejlove onih koji su se pretplatili.
+     Omoguceno je brisanje podataka iz xml-a podaci
+    -mogucnost skidanja csv fajla preko dugmeta
+    -kreiranje pdf-a preko linka
+    -pretrazivanje podataka iz xml-a podaci1.
+
 
 II  - Šta nije uradeno?
-      -za dropdown meni nisu pravljene nove podstranice, nego je povezan sa postojecim 
+      -editovanje za admina
 
 III - Bug-ovi koje ste primijetili ali niste stigli 
-       ispraviti, a znate rješenje (opis rješenja)
+       stranici za admina moze pristupiti, ako direktno unesemo url (postavka sesije).
 
 IV  - Bug-ovi koje ste primijetili ali ne znate rješenje
 

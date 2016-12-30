@@ -74,8 +74,22 @@
 	 //Unos podataka u xml
 	 if (isset($_REQUEST['ok']) && ($_SERVER["REQUEST_METHOD"]=="POST")){
 		 $ime = $email = $komentar = "";
-		 $ime = test_input($_POST["ime"]);
-		 $email = test_input($_POST["email"]);
+		 $nameErr = $emailErr = $genderErr = $websiteErr = "";
+		 
+         if (empty($_POST["ime"])) 
+             $nameErr = "Name is required";
+         $ime = test_input($_POST["ime"]);
+		 if (!preg_match("/^[a-zA-Z ]*$/",$ime)) 
+             $nameErr = "Only letters and white space allowed"; 
+		 
+		 if (empty($_POST["email"])) 
+             $emailErr = "Email is required";
+         $email = test_input($_POST["email"]);
+		 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+             $emailErr = "Invalid email format"; 
+			 
+		 if (empty($_POST["komentar"])) 
+             $comment = "";
 		 $komentar = test_input($_POST["komentar"]);
 		 
 		 $xml=new DOMDocument("1.0", "UTF-8");
@@ -100,7 +114,11 @@
 		 
      if (isset($_REQUEST['submit']) && ($_SERVER["REQUEST_METHOD"]=="POST")){
 		 $email = "";
+		 if (empty($_POST["email"])) 
+             $emailErr = "Email is required";
 		 $email = test_input($_POST["email"]);
+		 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+             $emailErr = "Invalid email format"; 
 		 
 		 $xml=new DOMDocument("1.0", "UTF-8");
 		 $xml->load("podaci1.xml");
@@ -139,7 +157,7 @@
 		     </p>
 		     <form id="forma2" name="forma2" onclick="return validateForm('forma2')" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
 		          <div id="greska" name="greska" style="color:red" font-weight:bold></div>
-		             <input type="text" placeholder="Email Adress" name="email" id="email">
+		             <input type="text" placeholder="Email Adress" name="email" id="email" required>
 		             <input type="submit" value="Prijavi se!" name="submit">
 		     </form>
 		 </div>

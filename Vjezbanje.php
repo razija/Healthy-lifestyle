@@ -94,7 +94,11 @@
 	 
 	 if (isset($_REQUEST['submit']) && ($_SERVER["REQUEST_METHOD"]=="POST")){
 		 $email = "";
+		 if (empty($_POST["email"])) 
+             $emailErr = "Email is required";
 		 $email = test_input($_POST["email"]);
+		 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+             $emailErr = "Invalid email format";
 		 
 		 $xml=new DOMDocument("1.0", "UTF-8");
 		 $xml->load("podaci1.xml");
@@ -112,7 +116,7 @@
 		   
 		   <form id="forma1" name="forma1" onclick='return validateForm("forma1")' method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
 		   <div id="greska" name="greska" style="color:red" font-weight:bold></div>
-		   <input type="text" placeholder="Email Adress" id="email" name="email">
+		   <input type="text" placeholder="Email Adress" id="email" name="email" required>
 		   <input type="submit" value="Prijavi se!" name="submit">
 		   </form>
 		   
