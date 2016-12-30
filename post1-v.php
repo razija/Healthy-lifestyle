@@ -29,10 +29,9 @@
 		<div class="red"></div>
 		<div class="red"></div>
 		<div class="red"></div>
-	</div>	
-
+	</div>
 	
-    <div class="kolona dva">
+		<div class="kolona dva">
 	    <div class="red"></div>
 		<h2>Sedam minuta do srece!</h2><br><br>
 	    <p>Da li ste znali da je dovoljno sedam minuta aktivnosti, da biste osetili ogroman osecaj srece?<br><br>
