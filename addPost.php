@@ -1,5 +1,5 @@
 <?php 
-	$conn = new mysqli("localhost","root","","healty_life");
+	$conn = new mysqli("mysql-57-centos7","root","","healty_life");
 	$queryCategory = "SELECT * FROM `categories`";
 	$categories = $conn->query($queryCategory);
 

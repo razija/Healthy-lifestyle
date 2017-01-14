@@ -7,7 +7,7 @@
      $pdf->SetTitle('Subscribers');
 	 $pdf->SetTextColor(128, 0, 0);
      $pdf->MultiCell(120,20,'Emailovi korisnika koji su se pretplatili: ');
-	 $conn = new mysqli("localhost","root","","healty_life");
+	 $conn = new mysqli("mysql-57-centos7","root","","healty_life");
 	 $query = "SELECT * FROM `subscribers`";
 	 $result = $conn->query($query);
 		 if ($result->num_rows > 0) {

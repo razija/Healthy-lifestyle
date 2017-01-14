@@ -6,7 +6,7 @@ $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 $input = "";
  
 // konekcija sa bazom
-$link = mysqli_connect('localhost', 'root', '', 'healty_life');
+$link = mysqli_connect('mysql-57-centos7', 'root', '', 'healty_life');
 mysqli_set_charset($link,'utf8');
  
 // tabele sa putanje

@@ -64,7 +64,7 @@
 	 </div>
 	 
 	<?php
-	$conn = new mysqli("localhost","root","","healty_life");
+	$conn = new mysqli("mysql-57-centos7","root","","healty_life");
 	
 	 //validacija podataka sa forme
      function test_input($data){
