@@ -5,7 +5,7 @@
 
 	//$conn = mysql_connect("localhost","root","");
 	//mysql_select_db("healty_life");
-	$conn = new mysqli("mysql-57-centos7","root","","healty_life");
+	$conn = new mysqli("localhost","root","","healty_life");
 
  ?>
 

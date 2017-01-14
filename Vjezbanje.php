@@ -1,6 +1,6 @@
 <?php 
 
-		$conn = new mysqli("mysql-57-centos7","root","","healty_life");
+		$conn = new mysqli("localhost","root","","healty_life");
 		$query = "SELECT * FROM `posts` WHERE category_id = 1";
 		$result = $conn->query($query);
  ?>

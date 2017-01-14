@@ -104,7 +104,7 @@
 		   Join 1000 other subscribers!</p>
 	 <?php
 	 
-	 $conn = new mysqli("mysql-57-centos7","root","","healty_life");
+	 $conn = new mysqli("localhost","root","","healty_life");
 	 //validacija unesenih sa forme podataka sa forme
      function test_input($data){
      $data = trim($data);

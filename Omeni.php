@@ -91,7 +91,7 @@ Nisam odgovorna za povrede ili zdravstveno stanje onih koji su poslusali savjete
 		   
 	 <?php
 	 
-	 $conn = new mysqli("mysql-57-centos7","root","","healty_life");
+	 $conn = new mysqli("localhost","root","","healty_life");
 	 //validacija unesenih sa forme podataka sa forme
      function test_input($data){
      $data = trim($data);

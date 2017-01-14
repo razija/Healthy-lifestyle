@@ -1,5 +1,5 @@
 <?php 
-	$con = mysql_connect("mysql-57-centos7","root","");
+	$con = mysql_connect("localhost","root","");
 	mysql_select_db("healty_life");
 
 	$xml=simplexml_load_file("podaci.xml");

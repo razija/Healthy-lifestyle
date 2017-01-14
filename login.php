@@ -1,6 +1,6 @@
 <?php      
 	session_start();
-	$conn = new mysqli("mysql-57-centos7","root","","healty_life");
+	$conn = new mysqli("localhost","root","","healty_life");
 
  ?>
  <!DOCTYPE html>
