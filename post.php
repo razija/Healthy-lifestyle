@@ -1,28 +1,37 @@
+<?php 
+	$conn = new mysqli("localhost","root","","healty_life");
+	$id = $_GET["id"];
+	$query = "SELECT * FROM `posts` WHERE id = '$id'";
+	$post = $conn->query($query);
+
+	$post = $post->fetch_assoc();
+
+	if(empty($post))
+		$post = "There is no post";
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+	<title>Moja stranica</title>
 	<link rel="stylesheet" href="pravi.css">
 	<script src="novi.js"></script>
-	<title>O meni</title>
 </head>
-<body>
+ <body>
 	<div class="red" id="horizontalni_meni">
 		<ul>
   <li><a class="active" href="naslovna.html">Home</a></li>
   <li><a href="Kontakt.html">Kontakt</a></li>
   <li><a href="Omeni.html">O meni</a></li>
   <li><a href="galerija.html">Galerija</a></li>
-  <li><a href="login.php">Sign in</a></li>
 		</ul>
 	</div>
-		<div class="red" id="pretraga">
+	<div class="red" id="pretraga">
 		<form action="action_page.php">
 				<input id="i" type="search" placeholder="Search...">
 		</form>
 	</div>
-		<div class="red" id="slika4">
+	<div class="red" id="slika1">
 		<div class="red"></div>
 		<div class="red"></div>
 		<div class="red"></div>
@@ -32,8 +41,8 @@
 		<div class="red"></div>
 		<div class="red"></div>
 	</div>
-      
-	 	<div class="kolona jedan" id="meni">
+	
+		 	<div class="kolona jedan" id="meni">
 		<ul>
 	        <li><a class="active" id="naslovna.html" href="naslovna.php">Home</a></li>
 			<li><a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()">Vježbanje</a>
@@ -54,44 +63,21 @@
 	  </ul>
 	</div>
 	
-    <div class="kolona dva">
-		<div class="red"></div>
-		<div class="red" id="slika7">
-		<img  height="225px" width="100%" src="slicice/me.jpg" alt="Picture"/>
-        </div>
-		<div class="red">
-		<p>Zdravo!<br>Ja sam Razija Djulovic.Iako pisem o zdravoj ishrani, s dubokim uverenjem da 
-          izbori u hrani i nas stil zivota mogu da uticu na nase zdravlje i peveniraju 
-          bolesti uzrokovane stilom zivota, ja u isto vreme duboko vjerujem ljekarima i nauci,
- konstultujem se sa njima, nikada se ne lijecim na svoju ruku, i imam odgovoran odnos
- prema uzimanju  lijekova. Mnogo puta se desilo da citaoci povjeruju da zbog toga sto 
- sam svoj holesterol “lijecila” drugacijom ishranom i sportom, da ja može biti pripadam 
- onom zavjerenickom krugu ljudi koji zaziru od medicine i nauke. Naprotiv.
- Ako budete mene pitali “ja imam bolest tu i tu, sta da radim”, ja cu vam uvek reci da 
- odmah konsultujete ljekara, a ne Internet.
- Ako zelite da saradjujete sa mnom na ovom blogu, ili da me nesto pitate, ostavite komentar.
- Ostale tekstove cete pronaci cackanjem po arhivi, na sopstvenu odgovornost. :)<p>
-		</div>
- <div class="red" id="odgovornost">
- <h3>Odricanje odgovornosti:</h3>
- <p>Nisam profesionalni trener, nisam nutricionista, nisam strucnjak iz oblasti o kojoj pisem. 
-Sve sto ovde napisem odnosi se samo na mene i moju praksu i sve što napisem, 
-uzmite sa rezervom, a ne kao savet strucnjaka. Jedan vazan 
-savjet: konsultujte ljekara ili fizijatra pre nego sto nesto od ponudjenog na blogu, pokusate 
-da primijenite na sebi. I ja svaki put konsultujem ljekara, ako zelim nesto u treningu ili ishrani drasticno da promijenim.
-Nisam odgovorna za povrede ili zdravstveno stanje onih koji su poslusali savjete sa ovog bloga.</p>
- </div>
+		<div class="kolona dva">
+	    <div class="red"></div>
+		<h2><?php echo $post["title"] ?></h2><br><br>
+	    <p><?php echo $post["text"] ?></p>
+		
+		<img width="100%" src="slicice/<?php echo $post['image'] ?>" alt="Picture"/>
+		
 	</div>
-	
+
 	<div class="kolona jedan" id="desna_strana">
 	     <div class="red" id="prijava">
 		<h3>Moji tekstovi u tvom inboxu</h3><br>
-        <p>Odluka da pratis u stopu ovaj blog je mozda najbolja odluka koju ces donijeti u zivotu. Posebno ako su i ostale bile uzasne.Ima nas 1000.
+        <p>Odluka da pratis u stopu ovaj blog je mozda najbolja odluka koju ces doneti u zivotu. Posebno ako su i ostale bile uzasne.Ima nas 1000.
 		   Join 1000 other subscribers!</p>
-		   
 	 <?php
-	 
-	 $conn = new mysqli("localhost","root","","healty_life");
 	 //validacija unesenih sa forme podataka sa forme
      function test_input($data){
      $data = trim($data);
@@ -107,18 +93,20 @@ Nisam odgovorna za povrede ili zdravstveno stanje onih koji su poslusali savjete
 		 $email = test_input($_POST["email"]);
 		 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
              $emailErr = "Invalid email format";
-         $query = "INSERT INTO subscribers (email) VALUES ('$email')";
-	     $result = $conn->query($query);
-         if($result)
-			echo "<h2>Successfuly inserted ".$email." subscriber </h2>";
-	    
-	    }
+		 
+	    $query = "INSERT INTO contacts (name,email,comment) VALUES ('$ime', '$email', '$komentar')";
+			
+		$result = $conn->query($query);
+
+		if($result)
+			echo "<h2>Successfuly inserted ".$ime." contact </h2>";
+	}
      ?>
 		   
-		   <form id="forma1" name="forma1" onclick='return validateForm("forma1")' method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+		   <form id="forma1" name="forma1" onclick='return validateForm("forma1")' method="post">
 		   <div id="greska" name="greska" style="color:red" font-weight:bold></div>
 		   <input type="text" placeholder="Email Adress" id="email" name="email" required>
-		   <input type="submit" value="Prijavi se!" name="submit">
+		   <input type="button" value="Prijavi se!">
 		   </form>
 		   
 		  </div>
@@ -127,11 +115,14 @@ Nisam odgovorna za povrede ili zdravstveno stanje onih koji su poslusali savjete
 		  </div>
 	
 			<div class="red" id="logo">
-			<img width="100%" src="slicice/srce.png" alt="Picture">
+			<img width="100%" src="slicice/srce.png" alt="Picture" />
 			</div>
 		</div>
 		
-			<div class="red" id="horizontalni_meni">
+	
+	
+	
+	<div class="red" id="horizontalni_meni">
 		<ul>
   <li><a class="active" href="naslovna.html">Home</a></li>
   <li><a href="Kontakt.html">Kontakt</a></li>
@@ -139,6 +130,14 @@ Nisam odgovorna za povrede ili zdravstveno stanje onih koji su poslusali savjete
   <li><a href="galerija.html">Galerija</a></li>
 		</ul>
    </div>
-<div class="red" id="zadnji_red"></div>
-</body>
+
+<div class="red" id="zadnji_red"></div>	
+ </body>
 </html>
+
+
+
+
+
+
+

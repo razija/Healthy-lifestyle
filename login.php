@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php      
+	session_start();
+	$conn = new mysqli("localhost","root","","healty_life");
+
+ ?>
+ <!DOCTYPE html>
 <html lang="en">
 <body>
      <head><title>Sign in</title></head>   
@@ -14,35 +19,49 @@
 </html>
     
 <?php
-    session_start();
-	$username = "";
-	//if (isset($_SESSION['username']))
-        //$username = $_SESSION['username'];
-    if (isset($_REQUEST['username'])) {
-        if ($_REQUEST['username'] === "admin" && $_REQUEST['password'] === "admin") {
-            $username = $_REQUEST['username'];
-            $_SESSION['username'] = $username;
+
+    if (isset($_REQUEST['Guest']) && $_REQUEST['Guest'] == 'Login as a guest'){
+		 echo "<br>Komentari i utisci korisnika koji su citali moje price: <br><br>";
+		 $query = "SELECT * FROM `contacts`";
+		 $result = $conn->query($query);
+		 if ($result->num_rows > 0) {
+		    // output data of each row
+		    while($row = $result->fetch_assoc()) {
+		        echo "Komentar:  " . $row["comment"]. "<br><br>";
+		    }
+		} 
+		else {
+		    echo "0 results";
+		}
+
 	}
-    else if (isset($_REQUEST['Guest']) && $_REQUEST['Guest'] == 'Login as a guest') {
-        $username = 'guest';
-        $_SESSION['username'] = $username;
-    }
-    else
-        print "Greška!Morate popuniti polja.";
-    }
-	   
-    if ($username === "admin")
-        header("Location:program.php");
-    else if ($username === "guest" ){
-	     $xml=simplexml_load_file("podaci.xml") or die("Error: Cannot create object");
-		 echo "Komentari i utisci korisnika koji su citali moje price: <br>";
-	     foreach($xml->children() as $podaci) {
-		     //echo $podaci->ime . ", "; 
-		     //echo $podaci->email . ", "; 
-		     echo $podaci->komentar . "<br> "; 
-		     echo "<br>";
-	     }
-	 }
+	
+	$username="";
+	if (isset($_SESSION['username'])){
+	     $username= $_SESSION['username'];
+	     header ("Location:program.php");
+	
+	}
+	
+	 else if (isset($_REQUEST['username']) && $_REQUEST['username'] === "admin" && $_REQUEST['password'] === "admin") {
+         //$user = htmlEntities($_POST['username'], ENT_QUOTES);
+	     //$pass = htmlEntities($_POST['password'], ENT_QUOTES);
+	     $query = "SELECT * FROM `admin_table`";
+	     $result = $conn->query($query);
+		 
+	     if ($result->num_rows > 0) {
+		     while($row = $result->fetch_assoc()){
+		         if ($row["name"] == $_POST['username'] && $row["password"]== $_POST['password']){
+			         $_SESSION['username'] = $_POST['username'];
+		             header ("Location:program.php");
+				 }
+		        }
+	
+	        }
+	}
+	
+
+	
 
 ?>
 	 

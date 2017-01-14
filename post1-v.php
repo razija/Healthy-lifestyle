@@ -103,6 +103,8 @@
         <p>Odluka da pratis u stopu ovaj blog je mozda najbolja odluka koju ces doneti u zivotu. Posebno ako su i ostale bile uzasne.Ima nas 1000.
 		   Join 1000 other subscribers!</p>
 	 <?php
+	 
+	 $conn = new mysqli("localhost","root","","healty_life");
 	 //validacija unesenih sa forme podataka sa forme
      function test_input($data){
      $data = trim($data);
@@ -119,17 +121,11 @@
 		 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
              $emailErr = "Invalid email format";
 		 
-		 $xml=new DOMDocument("1.0", "UTF-8");
-		 $xml->load("podaci1.xml");
-		 
-		 $rootTag = $xml->getElementsByTagName("all_data")->item(0);
-		 $dataTag = $xml->createElement("data");
-		 $emailTag = $xml->createElement("email", $email);
-		 
-		 $dataTag->appendChild ($emailTag);
-		 $rootTag->appendChild ($dataTag);
-		 
-	     $xml->save("podaci1.xml");
+         $query = "INSERT INTO subscribers (email) VALUES ('$email')";
+	     $result = $conn->query($query);
+         if($result)
+			echo "<h2>Successfuly inserted ".$email." subscriber </h2>";
+	    }
 	}
      ?>
 		   

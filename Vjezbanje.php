@@ -1,3 +1,10 @@
+<?php 
+
+		$conn = new mysqli("localhost","root","","healty_life");
+		$query = "SELECT * FROM `posts` WHERE category_id = 1";
+		$result = $conn->query($query);
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,26 +62,24 @@
 	  </ul>
 	</div>
 
-	    <div class="kolona dva">
+	   <div class="kolona dva">
 		<div class="red post">
-			<div>
-				<a class="link" href="post1-v.html">
-					<h2>Sedam minuta do srece!</h2>
-					<img src="slicice/image1.jpg"  alt="Picture">
-					<p>Da li ste znali da je dovoljno sedam minuta aktivnosti, da biste osjetili ogroman osecaj srece?
-					   Dokaz za to imam ja, kao i svi oni koji su to probali, ali sada je to i naucno objasnjeno....
-					</p>
-				</a>
-			</div>
-			<div>
-				<a class="link" href="post1-v.html">
-					<h2>Sedam minuta do srece!</h2>
-					<img src="slicice/image2.jpg"  alt="Picture">
-					<p>Da li ste znali da je dovoljno sedam minuta aktivnosti, da biste osjetili ogroman osecaj srece?
-					   Dokaz za to imam ja, kao i svi oni koji su to probali, ali sada je to i naucno objasnjeno....
-					</p>
-				</a>
-			</div>
+			<?php 
+				if ($result->num_rows > 0) {
+					    // output data of each row
+				    while($row = $result->fetch_assoc()) 
+				    { ?>
+						<div>
+					        <a class="link" href="post.php?id=<?php echo $row['id'] ?>">
+								<h2><?php echo $row["title"] ?></h2>
+								<img src="uploads/<?php echo $row['image'] ?>"  alt="Picture">
+								<p><?php echo $row["title"] ?></p>
+							</a>
+						</div>
+			<?php	}
+				}
+			?>
+
 		</div>
 	</div>
 	
@@ -99,18 +104,12 @@
 		 $email = test_input($_POST["email"]);
 		 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
              $emailErr = "Invalid email format";
-		 
-		 $xml=new DOMDocument("1.0", "UTF-8");
-		 $xml->load("podaci1.xml");
-		 
-		 $rootTag = $xml->getElementsByTagName("all_data")->item(0);
-		 $dataTag = $xml->createElement("data");
-		 $emailTag = $xml->createElement("email", $email);
-		 
-		 $dataTag->appendChild ($emailTag);
-		 $rootTag->appendChild ($dataTag);
-		 
-	     $xml->save("podaci1.xml");
+		 	    $query = "INSERT INTO contacts (name,email,comment) VALUES ('$ime', '$email', '$komentar')";
+			
+		$result = $conn->query($query);
+
+		if($result)
+			echo "<h2>Successfuly inserted ".$ime." contact </h2>";
 	}
      ?>
 		   

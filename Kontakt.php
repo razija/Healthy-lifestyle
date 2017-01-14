@@ -64,14 +64,16 @@
 	 </div>
 	 
 	<?php
+	$conn = new mysqli("localhost","root","","healty_life");
+	
 	 //validacija podataka sa forme
      function test_input($data){
-     $data = trim($data);
-     $data = stripslashes($data);
-     $data = htmlspecialchars($data);
-     return $data;
-}
-	 //Unos podataka u xml
+         $data = trim($data);
+         $data = stripslashes($data);
+         $data = htmlspecialchars($data);
+         return $data;
+    }
+	 //Unos podataka u bazu
 	 if (isset($_REQUEST['ok']) && ($_SERVER["REQUEST_METHOD"]=="POST")){
 		 $ime = $email = $komentar = "";
 		 $nameErr = $emailErr = $genderErr = $websiteErr = "";
@@ -92,7 +94,7 @@
              $comment = "";
 		 $komentar = test_input($_POST["komentar"]);
 		 
-		 $xml=new DOMDocument("1.0", "UTF-8");
+		 /*$xml=new DOMDocument("1.0", "UTF-8");
 		 $xml->load("podaci.xml");
 		 
 		 $rootTag = $xml->getElementsByTagName("all_data")->item(0);
@@ -109,8 +111,16 @@
 		 
 		 $rootTag->appendChild ($dataTag);
 		 
-	     $xml->save("podaci.xml");
-		 }
+	     $xml->save("podaci.xml");*/
+		 
+	    $query = "INSERT INTO contacts (name,email,comment) VALUES ('$ime', '$email', '$komentar')";
+			
+		$result = $conn->query($query);
+
+		if($result)
+			echo "<h2>Successfuly inserted ".$ime." contact </h2>";
+
+	}
 		 
      if (isset($_REQUEST['submit']) && ($_SERVER["REQUEST_METHOD"]=="POST")){
 		 $email = "";
@@ -120,7 +130,7 @@
 		 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
              $emailErr = "Invalid email format"; 
 		 
-		 $xml=new DOMDocument("1.0", "UTF-8");
+		 /*$xml=new DOMDocument("1.0", "UTF-8");
 		 $xml->load("podaci1.xml");
 		 
 		 $rootTag = $xml->getElementsByTagName("all_data")->item(0);
@@ -131,7 +141,15 @@
 		 $rootTag->appendChild ($dataTag);
 		 
 	     $xml->save("podaci1.xml");
-		 }
+		 */
+
+		$query = "INSERT INTO subscribers (email) VALUES ('$email')";
+			
+		$result = $conn->query($query);
+
+		if($result)
+			echo "<h2>Successfuly inserted ".$email." subscriber </h2>";
+		}
 	 ?>
 	 <div class="kolona dva">
 	 <div class="red">

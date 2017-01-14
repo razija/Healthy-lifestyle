@@ -1,7 +1,12 @@
 <?php      
-	//session_start();
+	session_start();
 	//if(!isset($_SESSION))
 		//header("Location: login.php");
+
+	//$conn = mysql_connect("localhost","root","");
+	//mysql_select_db("healty_life");
+	$conn = new mysqli("localhost","root","","healty_life");
+
  ?>
 
 <!DOCTYPE html>
@@ -10,19 +15,16 @@
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-     <form method="POST" action="login.php">
-	     <input type="submit" value="Log out" name="logout">
-	 </form><br>
-	 <?php
-	 if (isset($_REQUEST['logout'])){
-     session_destroy();
-	 header ("Location: login.php");
-	 }
-     ?>
-    <input type="button" onclick="location.href='csvDownload.php';" value="Download CSV File" /> <br><br>
+    <a id="linkLogout" href="logout.php"> Log out </a><br><br>
+    <input type="button" onclick="location.href='csvDownload.php';" value="Download CSV File" /> <br>
 	
     <p>Ako želite generisati izvještaj u pdf-u kliknite <a onclick="location.href='pdfGenerate.php';">ovdje.</a></p>
 	
+
+    <input type="button" onclick="location.href='addCategory.php';" value="Add new category" /> <br> <br>
+
+    <input type="button" onclick="location.href='addPost.php';" value="Add new post" /> <br><br>
+
 	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
 		<?php
 			$name = "";
@@ -41,12 +43,22 @@
 			{
 				echo '<div>Rezultati</div>';
 				$name = $_GET["search"];
+
+				/*
 				$xml = simplexml_load_file('podaci.xml');				
 				$users = $xml->xpath("//data/ime[contains(text(), '$name')]");
-		
-				foreach($users as $user)
-				{
-					echo $user . '<br>'; // Full Package
+				*/
+
+				$query = "SELECT * FROM contacts WHERE name LIKE '%$name%'";
+				$result = $conn->query($query);
+
+				if ($result->num_rows > 0) {
+				    // output data of each row
+				    while($row = $result->fetch_assoc()) {
+				        echo "Name: " . $row["name"]. "<br> Email: " . $row["email"]. "<br><br>";
+				    }
+				} else {
+				    echo "0 results";
 				}
 				echo '<br>';
 			}
@@ -64,7 +76,7 @@
 //Brisanje podataka iz xml
      if (isset($_REQUEST['ok']))
 	 {
-		 $xml=new DOMDocument("1.0", "UTF-8");
+		 /*$xml=new DOMDocument("1.0", "UTF-8");
 		 $xml->load("podaci.xml");
 		 
 	     $cemail = $_POST['email'];
@@ -75,28 +87,46 @@
 			 $node->parentNode->removeChild($node);
 		 }
 	     $xml->save("podaci.xml");
+		*/
+	    $email = $_POST['email'];
 
-		 }
-		  function search($test)
-	 {
-		 var_dump($test);
-	 }
+	    $sql = "DELETE FROM contacts WHERE email='$email'";
+
+		if ($conn->query($sql) === TRUE) {
+		    echo "Record deleted successfully";
+		} else {
+		    echo "Error deleting record: " . $conn->error;
+		}
+	}
+
 	?>
 
      <form method="get" action="program.php">
 	 <?php
-	
-	 $xml=simplexml_load_file("podaci.xml") or die("Error: Cannot create object");
-	 foreach($xml->children() as $podaci) { 
-		 echo $podaci->ime . ", "; 
-		 echo $podaci->email . ", "; 
-		 echo $podaci->komentar . "<br> "; 
-		 echo "<br>";
-	 }?>
+		 //$xml=simplexml_load_file("podaci.xml") or die("Error: Cannot create object");
+		 
+	 	$query = "SELECT * FROM `contacts`";
+		//$result = mysqli_query($con,$query);
+		//$count = mysql_num_rows($result);
+		$result = $conn->query($query);
+
+		if ($result->num_rows > 0) {
+		    // output data of each row
+		    while($row = $result->fetch_assoc()) {
+		        echo "Name: " . $row["name"]. "<br> Email: " . $row["email"]. "<br><br>";
+		    }
+		} else {
+		    echo "0 results";
+		}
+
+
+
+	?>
 	 </form>
 	 
-	 
-
+	<form method="post" action="xmltodatabase.php">
+		<input type="submit" value="Import XML file to database" />
+	</form>
 
 </body>
 </html>
